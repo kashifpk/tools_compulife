@@ -13,3 +13,11 @@ Later if you want to pull latest changes (any updates to the app) you can do::
 
     git subtree pull --prefix myproject/apps/visit_counter VC master
 
+
+TODO
+-----
+
+- [ ] Display visit counter
+- [ ] DojoX based graphs for visit counts
+- [ ] GeoIP based location grouping (also in graphs)
+- [X] Detailed documentation
