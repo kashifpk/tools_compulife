@@ -6,19 +6,23 @@ from ..models import (
     )
 
 from ..forms import ContactForm
+from ..apps.visit_counter import count_visit
 
 
 @view_config(route_name='home', renderer='home.mako')
 def homepage(request):
 
-    print(request.user_agent)
-    print(request.client_addr)
+    #print(request.user_agent)
+    #print(request.client_addr)
+    #print(request.current_route_url())
+    count_visit(request)
     return {'project': 'tools_compulife'}
 
 
 @view_config(route_name='contact', renderer="contact.mako")
 def contact_form(request):
 
+    count_visit(request)
     f = ContactForm(request.POST)   # empty form initializes if not a POST request
 
     if 'POST' == request.method and 'form.submitted' in request.params:

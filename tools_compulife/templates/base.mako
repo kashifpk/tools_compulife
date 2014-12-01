@@ -74,18 +74,17 @@ claro
 </%def>
   
 <%def name="content_wrapper()">
-  <div id="content">
     
-    <% flash_msgs = request.session.pop_flash() %>
-    
-    %for flash_msg in flash_msgs:
-      <div class="alert alert-info">
-        ${flash_msg}
-      </div>
-    %endfor
-    
-  ${self.body()}
+<% flash_msgs = request.session.pop_flash() %>
+
+%for flash_msg in flash_msgs:
+  <div class="alert alert-info">
+	${flash_msg}
   </div>
+%endfor
+    
+${self.body()}
+  
 </%def>
     
 <%def name="main_menu()">
