@@ -1,13 +1,13 @@
 <%inherit file="/base.mako"/>
 
 <%def name="title()">
-The visit_counter app
+The {{appname}} app
 </%def>
 
 <div>
   <div class="middle align-center">
     <p class="app-welcome">
-    <img src="${request.static_url(APP_BASE + ':static/webapp.png')}" />  Welcome to visit_counter app
+    <img src="${request.static_url(APP_BASE + ':static/webapp.png')}" />  Welcome to {{appname}} app
     </p>
   </div>
 </div>

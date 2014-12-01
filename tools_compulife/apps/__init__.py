@@ -12,3 +12,4 @@ project_package = importlib.import_module("tools_compulife")
 from . import visit_counter
 enabled_apps = [visit_counter]
 
+
