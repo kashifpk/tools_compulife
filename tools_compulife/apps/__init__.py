@@ -9,6 +9,6 @@ project_package = importlib.import_module("tools_compulife")
 #from . import app1, app2
 #enabled_apps = [app1, app2]
 
-#from . import blog
-#enabled_apps = [blog]
+from . import visit_counter
+enabled_apps = [visit_counter]
 
