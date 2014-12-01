@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from sqlalchemy import Column, Integer, Unicode, DateTime, Date
 from . import db, Base
 
@@ -13,6 +13,23 @@ class Visit(Base):
     source_ip = Column(Unicode(50))
     user_agent = Column(Unicode(200))
     url = Column(Unicode(2000))
+
+    @classmethod
+    def get_records(cls, date_from, date_to=None):
+        """
+        Return records for a date range. Date values are strings.
+
+            - date_to is inclusive
+        """
+
+        if not date_to:
+            date_to = date_from
+
+        date_from = datetime.strptime(date_from, '%Y-%m-%d')
+        date_to = datetime.strptime(date_to, '%Y-%m-%d') + timedelta(days=1)
+
+        return db.query(Visit).filter(Visit.timestamp >= date_from,
+                                      Visit.timestamp < date_to).all()
 
 
 class History(Base):
