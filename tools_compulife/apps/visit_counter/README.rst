@@ -21,3 +21,5 @@ TODO
 - [ ] DojoX based graphs for visit counts
 - [ ] GeoIP based location grouping (also in graphs)
 - [X] Detailed documentation
+
+.. include:: ./tools_compulife/apps/visit_counter/TODO.md
