@@ -9,7 +9,7 @@ PyCK Project - Contact Us
 
 <form action="${request.route_url('contact')}" method="POST">
     ${contact_form.as_p() | n}
-    <input type="submit" name="form.submitted" value="Send Email" />
+    <input type="submit" class="btn btn-primary" name="form.submitted" value="Send Email" />
 </form>
 <br /><br /><br /><br /><br /><br />
 </div>

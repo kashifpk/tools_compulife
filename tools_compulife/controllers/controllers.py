@@ -10,6 +10,9 @@ from ..forms import ContactForm
 
 @view_config(route_name='home', renderer='home.mako')
 def homepage(request):
+
+    print(request.user_agent)
+    print(request.client_addr)
     return {'project': 'tools_compulife'}
 
 

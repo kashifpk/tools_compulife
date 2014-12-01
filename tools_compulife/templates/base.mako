@@ -1,8 +1,7 @@
 <%!
 from tools_compulife.auth import is_allowed
 
-auth_links = [('home', 'Home'), ('contact', 'Contact Us'),
-              ('admin.admin_index', 'Admin Section'), ('pyckauth_manager', 'Auth Manager')]
+auth_links = [('home', 'Home'), ('contact', 'Contact Us')]
 
 %>
 
@@ -13,7 +12,10 @@ auth_links = [('home', 'Home'), ('contact', 'Contact Us'),
   <title>${self.title()}</title>
   ${self.meta()}
   
-  <link rel="shortcut icon" href="${request.static_url('tools_compulife:static/favicon.ico')}" />
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="icon" href="${request.route_url('favicon')}" />
+  <link rel="shortcut icon" href="${request.route_url('favicon')}" />  
+  
   <!-- Bootstrap -->
   <link rel="stylesheet" href="${request.static_url('tools_compulife:static/bootstrap/css/bootstrap.min.css')}">
   <link rel="stylesheet" href="${request.static_url('tools_compulife:static/bootstrap/css/bootstrap-theme.min.css')}">
@@ -22,9 +24,9 @@ auth_links = [('home', 'Home'), ('contact', 'Contact Us'),
   <link rel="stylesheet" href="${request.static_url('tools_compulife:static/pyck.css')}" type="text/css" media="screen" charset="utf-8" />
   
   <!-- Dojo -->
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/resources/dojo.css" type="text/css" charset="utf-8" />
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.8.3/dijit//themes/claro/claro.css" type="text/css" charset="utf-8" />
-  <script src="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js" data-dojo-config="isDebug: true, async: true, parseOnLoad: true"></script>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.1/dojo/resources/dojo.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.1/dijit//themes/claro/claro.css" type="text/css" charset="utf-8" />
+  <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.1/dojo/dojo.js" data-dojo-config="isDebug: true, async: true, parseOnLoad: true"></script>
   <script type="text/javascript">
         require(['dojo/parser', 'dojo/domReady'],function(parser,ready){ready(function(){
           parser.parse();
@@ -52,12 +54,12 @@ auth_links = [('home', 'Home'), ('contact', 'Contact Us'),
 </body>
 </html>
 
-<%def name="title()">The PyCK Web Application Development Framework</%def>
+<%def name="title()">Online tools for developers</%def>
 
 <%def name="meta()">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-  <meta name="keywords" content="python web application" />
-  <meta name="description" content="PyCK web application" />
+  <meta name="keywords" content="tools web developer programmer" />
+  <meta name="description" content="Online tools for web developers, academics, security reserachers and bloggers" />
 </%def>
 
 <%def name="body_class()">
@@ -91,13 +93,9 @@ claro
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="${request.route_url('home')}"><img src="${request.static_url('tools_compulife:static/pyck-small.png')}"  alt="pyck" /></a>
+      <a href="${request.route_url('home')}">
+			  <img style="vertical-align: top;" src="${request.static_url('tools_compulife:static/logo_small.png')}"  alt="compulife tools" />
+	  </a>
     </div>
 
     
@@ -117,24 +115,15 @@ claro
           %endif
         %endfor
       </ul>
-      <!--<form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>-->
+      <!--<form class="navbar-form navbar-left" role="search">-->
+      <!--  <div class="form-group">-->
+      <!--    <input type="text" class="form-control" placeholder="Search">-->
+      <!--  </div>-->
+      <!--  <button type="submit" class="btn btn-default">Submit</button>-->
+      <!--</form>-->
       <ul class="nav navbar-nav navbar-right">
-        <li>
-        %if request.session.get('logged_in_user', None):
-        <form style="display: inline" action="${request.route_url('pyckauth_logout')}" method="get">
-          <button class="btn btn-danger">Logout</button>
-        </form>
-        %else:
-        <form style="display: inline" action="${request.route_url('pyckauth_login')}" method="get">
-          <button class="btn btn-success">Login</button>
-        </form>
-        %endif
-        </li>
+        <p class="navbar-text navbar-right">Kashif Iftikahr</p>
+        
         
       </ul>
     </div><!-- /.navbar-collapse -->
