@@ -56,7 +56,7 @@
     });
      
     </script>
-    <div id="${div_name}" style="width:${width}px;height:${height}px;"></div>
+    <div id="${div_name}" style="width:${width}; height:${height};"></div>
 </%def>
 
 <%def name="line_chart(data=[], div_name='chart_div', width=400, height=200, theme='Julie')">
