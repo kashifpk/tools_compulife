@@ -3,8 +3,6 @@ TODO
  
 - [ ] Display visit counter
 - [ ] DojoX based graphs for visit counts
-      - Option to display bar charts horizontally
-      - Gap between bars in a bar chart
       - Chart size specification in CSS style
       - Allow setting extra chart info like title, legends etc
       - URL names in Pie chart
