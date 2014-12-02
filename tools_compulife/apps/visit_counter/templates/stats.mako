@@ -1,8 +1,10 @@
 <%inherit file="/base.mako"/>
+<%namespace name="charting" file="charting.mako" />
 
 <%def name="title()">
 Visit counter stats
 </%def>
+
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -19,7 +21,22 @@ Visit counter stats
     </table>
   </div>
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    Graph comes here
+    ${charting.line_chart(data=stats)}
+    ${charting.bar_chart(data=stats, div_name='bar_chart')}
+    ${charting.pie_chart(data=stats, div_name='pie_chart')}
+
+    View detailed logs for a date:
+    <div data-dojo-type="dijit/Calendar">
+        <script type="dojo/method" data-dojo-event="onChange" data-dojo-args="value">
+            require(["dojo/dom", "dojo/date/locale"], function(dom, locale){
+                var date_str = locale.format(value, {formatLength: 'full', selector:'date', datePattern:'yyyy-MM-dd'});
+                console.log(date_str);
+                window.location.href = '/visit_counter/details/' + date_str;
+            });
+        </script>
+    </div>
+    <p id="formatted"></p>
+
   </div>
 </div>
 
