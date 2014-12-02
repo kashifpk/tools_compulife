@@ -5,6 +5,26 @@
 Visit counter stats
 </%def>
 
+<script type="text/javascript">
+  function view_details() {
+    require(["dojo/dom", "dojo/date/locale"], function(dom, locale){
+            var date_str = locale.format(dijit.byId('date_from').value, {formatLength: 'full', selector:'date', datePattern:'yyyy-MM-dd'});
+            console.log(date_str);
+            window.location.href = '/visit_counter/details/' + date_str;
+        });
+  }
+</script>
+
+<div class="row">
+  View detailed logs for a date:
+  <input data-dojo-props="constraints: {}" data-dojo-type="dijit/form/DateTextBox"
+         id="date_from" name="date_from" type="text" value="${today}" />
+  
+  
+  <button class="btn btn-sm btn-primary" onclick="view_details();">View detailed log</button>
+</div>
+
+${charting.line_chart(data=stats, div_name="daily_traffic_chart", width="100%", height="200px")}
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -14,29 +34,14 @@ Visit counter stats
         <tr class="bg-info" style="font-weight: bold;"><th>URL</th><th>Visits</th></tr>
       </thead>
       <tbody>
-        %for row in stats:
+        %for row in url_stats:
           <tr><td>${row[0]}</td><td>${row[1]}</td></tr>
         %endfor
       </tbody>
     </table>
   </div>
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    ${charting.line_chart(data=stats)}
-    ${charting.column_chart(data=stats, div_name='bar_chart')}
-    ${charting.pie_chart(data=stats, div_name='pie_chart')}
-
-    View detailed logs for a date:
-    <div data-dojo-type="dijit/Calendar">
-        <script type="dojo/method" data-dojo-event="onChange" data-dojo-args="value">
-            require(["dojo/dom", "dojo/date/locale"], function(dom, locale){
-                var date_str = locale.format(value, {formatLength: 'full', selector:'date', datePattern:'yyyy-MM-dd'});
-                console.log(date_str);
-                window.location.href = '/visit_counter/details/' + date_str;
-            });
-        </script>
-    </div>
-    <p id="formatted"></p>
-
+    ${charting.pie_chart(data=url_stats, div_name='pie_chart')}
   </div>
 </div>
 
