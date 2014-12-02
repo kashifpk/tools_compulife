@@ -13,10 +13,13 @@ def count_visit(request):
     db.add(visit)
 
 
-def get_stats(date=None, limit=10):
-    "Return overall stats or stats for a given date if a date is given"
-
-    stats = db.query(Visit.url, func.count(Visit.id)).group_by(Visit.url).limit(limit).all()
-    print(stats)
-    return stats
-
+#def get_stats(date=None, limit=10):
+#    "Return overall stats or stats for a given date if a date is given"
+#
+#    query = db.query(Visit.url, func.count(Visit.id))
+#    if date:
+#        query = query.filter()
+#    stats = query.group_by(Visit.url).order_by(func.count(Visit.id).desc()).limit(limit).all()
+#
+#    return stats
+#

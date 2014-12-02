@@ -1,8 +1,11 @@
 <%inherit file="/base.mako"/>
+<%namespace name="charting" file="charting.mako" />
 
 <%def name="title()">
 Visit records
 </%def>
+
+${charting.bar_chart(data=stats, div_name='bar_chart')}
 
 <table class="table table-striped table-condensed">
   <caption class="bg-primary" style="font-size: larger; font-weight: bold;">Visit log for ${date}</caption>
