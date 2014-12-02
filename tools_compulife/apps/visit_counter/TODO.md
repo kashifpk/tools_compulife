@@ -1,6 +1,8 @@
 TODO
 =====
- 
+
+- [ ] Date range based details
+- [ ] Use Dojo DatePicker instead of Calendar
 - [ ] Display visit counter
 - [ ] DojoX based graphs for visit counts
       - Allow setting extra chart info like title, legends etc

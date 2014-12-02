@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
-from sqlalchemy import Column, Integer, Unicode, DateTime, Date, func
+from sqlalchemy import Column, Integer, Unicode, DateTime, Date
+from sqlalchemy import func, cast
 
 from . import db, Base
 from ..lib.dates import process_date_range
@@ -31,7 +32,33 @@ class Visit(Base):
                                       Visit.timestamp < date_to).all()
 
     @classmethod
-    def get_stats(cls, date_from=None, date_to=None, limit=10, sort=True):
+    def get_stats(cls, date_from=None, date_to=None, limit=100):
+        """
+        Return overall stats/summary or stats for a given date range if given
+
+        - date_to is inclusive
+            - if just date_from is given, only records for that date are returned
+        """
+
+        query = db.query(cast(Visit.timestamp, Date),
+                         func.count(Visit.id))
+
+        if date_from:
+            date_from, date_to = process_date_range(date_from, date_to)
+            query = query.filter(Visit.timestamp >= date_from,
+                                 Visit.timestamp < date_to)
+
+        query = query.group_by(cast(Visit.timestamp, Date))
+
+        if limit:
+            query = query.limit(limit)
+
+        stats = query.all()
+
+        return stats
+
+    @classmethod
+    def get_url_stats(cls, date_from=None, date_to=None, limit=10, sort=True):
         """
         Return overall stats/summary or stats for a given date range if given
 
