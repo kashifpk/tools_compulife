@@ -5,7 +5,7 @@
 Visit records
 </%def>
 
-${charting.bar_chart(data=stats, div_name='bar_chart', width='100%', height='300px')}
+${charting.bar_chart(data=stats, div_name='bar_chart', width='100%', height=str(len(stats)*50) + 'px')}
 
 <table class="table table-striped table-condensed">
   <caption class="bg-primary" style="font-size: larger; font-weight: bold;">Visit log for ${date}</caption>

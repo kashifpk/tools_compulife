@@ -33,7 +33,7 @@
         chart.addPlot("default", {
             type: "${chart_type}",
             %if chart_type in ('Bars', 'Columns'):
-            gap: 10,
+            gap: 5,
             %endif
             markers: true
         });
@@ -43,7 +43,7 @@
         chart.addAxis("x", { labels: labels, vertical: true, natural: true});
         chart.addAxis("y", { fixLower: "minor", fixUpper: "minor", natural: true, includeZero: true});
         %else:
-        chart.addAxis("x", { rotation: -30, labels: labels});
+        chart.addAxis("x", { rotation: -30, labels: labels, natural: true});
         chart.addAxis("y", { includeZero: true, min: 0, vertical: true, fixLower: "major", fixUpper: "major" });
         %endif
 
