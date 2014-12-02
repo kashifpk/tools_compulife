@@ -32,13 +32,21 @@
         // Add the only/default plot
         chart.addPlot("default", {
             type: "${chart_type}",
+            %if chart_type in ('Bars', 'Columns'):
+            gap: 10,
+            %endif
             markers: true
         });
      
         // Add axes
+        %if 'Bars' == chart_type:
+        chart.addAxis("x", { labels: labels, vertical: true, natural: true});
+        chart.addAxis("y", { fixLower: "minor", fixUpper: "minor", natural: true, includeZero: true});
+        %else:
         chart.addAxis("x", { rotation: -30, labels: labels});
-        chart.addAxis("y", { min: 0, vertical: true, fixLower: "major", fixUpper: "major" });
-     
+        chart.addAxis("y", { includeZero: true, min: 0, vertical: true, fixLower: "major", fixUpper: "major" });
+        %endif
+
         // Add the series of data
         chart.addSeries("Data Series", chart_data);
      
@@ -56,6 +64,10 @@
 </%def>
 
 <%def name="bar_chart(data=[], div_name='chart_div', width=400, height=200, theme='Julie')">
+    ${draw_chart('Bars', data, div_name, width, height, theme)}
+</%def>
+    
+<%def name="column_chart(data=[], div_name='chart_div', width=400, height=200, theme='Julie')">
     ${draw_chart('Columns', data, div_name, width, height, theme)}
 </%def>
 

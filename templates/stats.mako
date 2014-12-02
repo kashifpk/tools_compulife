@@ -22,7 +22,7 @@ Visit counter stats
   </div>
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
     ${charting.line_chart(data=stats)}
-    ${charting.bar_chart(data=stats, div_name='bar_chart')}
+    ${charting.column_chart(data=stats, div_name='bar_chart')}
     ${charting.pie_chart(data=stats, div_name='pie_chart')}
 
     View detailed logs for a date:
