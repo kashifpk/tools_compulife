@@ -1,30 +1,18 @@
 <%inherit file="/base.mako"/>
 <%namespace name="charting" file="charting.mako" />
+<%namespace name="date_search" file="_date_search.mako" />
 
 <%def name="title()">
 Visit counter stats
 </%def>
 
-<script type="text/javascript">
-  function view_details() {
-    require(["dojo/dom", "dojo/date/locale"], function(dom, locale){
-            var date_str = locale.format(dijit.byId('date_from').value, {formatLength: 'full', selector:'date', datePattern:'yyyy-MM-dd'});
-            console.log(date_str);
-            window.location.href = '/visit_counter/details/' + date_str;
-        });
-  }
-</script>
+${date_search.search_controls(today)}
 
 <div class="row">
-  View detailed logs for a date:
-  <input data-dojo-props="constraints: {}" data-dojo-type="dijit/form/DateTextBox"
-         id="date_from" name="date_from" type="text" value="${today}" />
-  
-  
-  <button class="btn btn-sm btn-primary" onclick="view_details();">View detailed log</button>
-</div>
-
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 ${charting.line_chart(data=stats, div_name="daily_traffic_chart", width="100%", height="200px")}
+  </div>
+</div>
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
