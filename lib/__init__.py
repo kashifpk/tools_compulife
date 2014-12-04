@@ -3,10 +3,12 @@ from sqlalchemy import func
 from urlparse import urlparse
 
 
-def count_visit(request):
+def count_visit(request, url=None):
     "Inserts a record in visits model for current URL (excluding querystring)"
 
-    url = urlparse(request.current_route_url()).path
+    if not url:
+        url = urlparse(request.current_route_url()).path
+
     visit = Visit(source_ip=request.client_addr,
                   user_agent=request.user_agent,
                   url=url)
