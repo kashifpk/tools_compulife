@@ -3,6 +3,7 @@ TODO
 
 - [X] Date range based details
 - [X] Use Dojo DatePicker instead of Calendar
+- [ ] History population for past dates
 - [ ] Display visit counter
 - [X] DojoX based graphs for visit counts
     - [ ] Allow setting extra chart info like title, legends etc
