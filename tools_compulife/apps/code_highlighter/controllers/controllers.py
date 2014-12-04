@@ -34,7 +34,7 @@ def do_highlighting(request):
     language = request.matchdict['language']
     style = request.matchdict['style']
 
-    if request.POST['code_file'].filename:
+    if hasattr(request.POST['code_file'], 'file'):
         code = request.POST['code_file'].file.read()
     else:
         code = request.POST['code']

@@ -58,8 +58,8 @@ auth_links = [('home', 'Home'), ('contact', 'Contact Us')]
 
 <%def name="meta()">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-  <meta name="keywords" content="tools web developer programmer" />
-  <meta name="description" content="Online tools for web developers, academics, security reserachers and bloggers" />
+  <meta name="keywords" content="tools web developer programmer syntax code highlight" />
+  <meta name="description" content="Online tools for web developers, academics, security reserachers and bloggers. First tools is code/syntax highlighter" />
 </%def>
 
 <%def name="body_class()">
@@ -136,5 +136,15 @@ ${self.body()}
   
 
 </%def>
-<%def name="footer()"></%def>
+<%def name="footer()">
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="well well-lg" style="text-align: center">
+       Posered by <a href="http://pyck.compulife.com.pk">PyCK Framework</a> from <a href="http://www.compulife.com.pk">CompuLife</a>
+	</div>
+  </div>			  
+  
+</div>
+
+</%def>
 

@@ -6,6 +6,12 @@ from urlparse import urlparse
 Code Highlighter
 </%def>
 
+<%def name="meta()">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <meta name="keywords" content="syntax highlight code highlighter online ${" ".join(lexers)}" />
+  <meta name="description" content="Online code highlighter. Syntax highlighting for many programming languages, scritps and formatting languages" />
+</%def>
+  
 <%def name="extra_head()">
   <script type="application/x-javascript">
   function submit_form() {
@@ -28,6 +34,20 @@ Code Highlighter
 
 <div class="well" style="text-align: center">
   <h1>Code Highlighter</h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- top_banner -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px"
+         data-ad-client="ca-pub-2220433291049397"
+         data-ad-slot="1814908460"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 </div>
 
 <form enctype="multipart/form-data" action="" method="POST" role="form" name="myform" id="myform">
