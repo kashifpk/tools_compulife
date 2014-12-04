@@ -31,4 +31,6 @@ def highlight_code(code, language, style, output_format='html'):
                                       linenos=True, cssclass="source")
     highlighted_code = highlight(code, lexer, formatter)
 
-    return highlighted_code
+    css_code = formatter.get_style_defs('.highlight')
+
+    return css_code, highlighted_code

@@ -36,7 +36,8 @@ def highlighter_home(request):
     return {'APP_BASE': APP_BASE, 'lexers': lexers, 'styles': styles}
 
 
-@view_config(route_name=APP_NAME+'.highlight')
+@view_config(route_name=APP_NAME+'.highlight',
+             renderer='%s:templates/code_highlight.mako' % APP_BASE)
 def do_highlighting(request):
     "Highlighting processing and display"
 
@@ -47,5 +48,9 @@ def do_highlighting(request):
     language = request.matchdict['language']
     style = request.matchdict['style']
 
-    code = highlight_code(request.POST['code'], language, style)
-    return Response(body=code, content_type="text/html")
+    css_code, code = highlight_code(request.POST['code'], language, style)
+    lexers, _ = get_names()
+
+    #return Response(body=code, content_type="text/html")
+    return {'APP_BASE': APP_BASE, 'lexers': lexers,
+            'css_code': css_code, 'code': code}

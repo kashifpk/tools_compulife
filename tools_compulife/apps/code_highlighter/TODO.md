@@ -1,7 +1,7 @@
 TODO
 =====
 
-- [ ] Basic page displaying supported styles and lexers
+- [X] Basic page displaying supported styles and lexers
+- [X] Actual code highlighting
 - [ ] File upload facility
-- [ ] Allow raw POST to highlighter
-
+- [ ] Allow raw POST/PUT highlighting
