@@ -6,30 +6,34 @@ from urlparse import urlparse
 Code Highlighter
 </%def>
 
-<script type="application/x-javascript">
-function submit_form() {
-  language = dijit.byId('language').value;
-  style = dijit.byId('style').value;
+<%def name="extra_head()">
+  <script type="application/x-javascript">
+  function submit_form() {
+    language = dijit.byId('language').value;
+    style = dijit.byId('style').value;
+    
+    // ${request.current_route_url()}
+    // ${urlparse(request.current_route_url()).path}
+    url = "${urlparse(request.current_route_url()).path.rstrip('/')}" + "/" + language + "/" + style;
+    
+    var myform = document.myform;
+    myform.action = url;
+    
+    myform.submit();
+  }
   
-  // ${request.current_route_url()}
-  // ${urlparse(request.current_route_url()).path}
-  url = "${urlparse(request.current_route_url()).path.rstrip('/')}" + "/" + language + "/" + style;
-  
-  var myform = document.myform;
-  myform.action = url;
-  
-  myform.submit();
-}
-</script>
+  require(["dojox/form/Uploader", "dojox/form/uploader/plugins/HTML5", "dojox/form/uploader/FileList"]);
+  </script>
+</%def>
 
 <div class="well" style="text-align: center">
   <h1>Code Highlighter</h1>
 </div>
 
-<form action="" method="POST" role="form" name="myform" id="myform">
+<form enctype="multipart/form-data" action="" method="POST" role="form" name="myform" id="myform">
 
 <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
     <label for="language">Language: </label>
     <select data-dojo-type="dijit/form/FilteringSelect" id="language" name="language">
       <option value=""></option>
@@ -39,7 +43,7 @@ function submit_form() {
     </select>
   </div>
   
-  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
     <label for="style">Style: </label>
     <select data-dojo-type="dijit/form/FilteringSelect" id="style" name="style">
       <option value=""></option>
@@ -49,7 +53,12 @@ function submit_form() {
     </select>
   </div>
   
-  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="text-align: center;">
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    <label for="code_file"><b>OR</b> upload file</label>
+    <input id="code_file" name="code_file" type="file" />
+  </div>
+  
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="text-align: center;">
     <button type="button" class="btn btn-sm btn-primary" onclick="submit_form();">Highlight code</button>
   </div>
 </div>
