@@ -1,6 +1,20 @@
-tools.compulife.com.pk Website
-================================
+pyckapps.code_highlighter
+==========================
 
-Contains various small online tools. Currently has:
+Pluggable code highlighting app for PyCK framework. This app goes under the apps folder in a pyck project and cannot be used standalone(without modification). If you're using git to manage your project you can put this app's repo as a subtree without your project.
 
-* Code highlighter [Link comes here]
+For example you can add this as a subtree to your PyCK project like::
+
+
+    git remote add CH git@github.com:kashifpk/pyckapps.code_highlighter.git
+    git subtree add --prefix myproject/apps/code_highlighter CH master
+
+Later if you want to pull latest changes (any updates to the app) you can do::
+
+    git subtree pull --prefix myproject/apps/code_highlighter CH master
+
+
+Dependencies
+-------------
+
+* pygments
