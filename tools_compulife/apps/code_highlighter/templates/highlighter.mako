@@ -1,14 +1,32 @@
 <%inherit file="/base.mako"/>
-
+<%!
+from urlparse import urlparse
+%>
 <%def name="title()">
 Code Highlighter
 </%def>
+
+<script type="application/x-javascript">
+function submit_form() {
+  language = dijit.byId('language').value;
+  style = dijit.byId('style').value;
+  
+  // ${request.current_route_url()}
+  // ${urlparse(request.current_route_url()).path}
+  url = "${urlparse(request.current_route_url()).path.rstrip('/')}" + "/" + language + "/" + style;
+  
+  var myform = document.myform;
+  myform.action = url;
+  
+  myform.submit();
+}
+</script>
 
 <div class="well" style="text-align: center">
   <h1>Code Highlighter</h1>
 </div>
 
-<form action="" method="POST" role="form">
+<form action="" method="POST" role="form" name="myform" id="myform">
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
@@ -32,7 +50,7 @@ Code Highlighter
   </div>
   
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="text-align: center;">
-    <button type="submit" class="btn btn-sm btn-primary">Highlight code</button>
+    <button type="button" class="btn btn-sm btn-primary" onclick="submit_form();">Highlight code</button>
   </div>
 </div>
 
@@ -45,7 +63,8 @@ Code Highlighter
 <br />
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
-    <button type="submit" class="btn btn-lg btn-primary">Highlight code</button>
+    <button type="button" class="btn btn-lg btn-primary" onclick="submit_form();">Highlight code</button>
   </div>
 </div>
 </form>
+

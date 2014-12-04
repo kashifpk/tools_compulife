@@ -36,16 +36,16 @@ def highlighter_home(request):
     return {'APP_BASE': APP_BASE, 'lexers': lexers, 'styles': styles}
 
 
-#@view_config(route_name=APP_NAME+'.highlight')
-#def do_highlighting(request):
-#    "Highlighting processing and display"
-#
-#    if request.method not in ['POST', 'PUT']:
-#        return HTTPNotAcceptable(detail="Only HTTP POST and HTTP PUT supported")
-#    
-#    count_visit(request)
-#    language = request.matchdict['language']
-#    style = request.matchdict['style']
-#
-#    lexers, styles = get_names()
-#    return Response(body='', content_type="text/html")
+@view_config(route_name=APP_NAME+'.highlight')
+def do_highlighting(request):
+    "Highlighting processing and display"
+
+    if request.method not in ['POST', 'PUT']:
+        return HTTPNotAcceptable(detail="Only HTTP POST and HTTP PUT supported")
+
+    count_visit(request)
+    language = request.matchdict['language']
+    style = request.matchdict['style']
+
+    code = highlight_code(request.POST['code'], language, style)
+    return Response(body=code, content_type="text/html")
