@@ -3,7 +3,7 @@ Main code highlighting code
 """
 
 from pygments import highlight
-from pygments.lexers import LEXERS, get_lexer_by_name
+from pygments.lexers import get_all_lexers, get_lexer_by_name
 from pygments.formatters import get_formatter_by_name
 from pygments.styles import STYLE_MAP
 
@@ -11,7 +11,9 @@ from pygments.styles import STYLE_MAP
 def get_names():
     "Returns names of all available lexers and styles"
 
-    return sorted(LEXERS.keys()), sorted(STYLE_MAP.keys())
+    lexer_names = [ i[0].lower() for i in get_all_lexers() ]
+
+    return sorted(lexer_names), sorted(STYLE_MAP.keys())
 
 
 def highlight_code(code, language, style, output_format='html'):
