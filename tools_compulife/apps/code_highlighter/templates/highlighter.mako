@@ -36,10 +36,10 @@ Code Highlighter
   <h1>Code Highlighter</h1>
 </div>
 
-<div class="row">
+<!-- top_banner -->
+<!--<div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- top_banner -->
     <ins class="adsbygoogle"
          style="display:inline-block;width:728px;height:90px"
          data-ad-client="ca-pub-2220433291049397"
@@ -48,7 +48,7 @@ Code Highlighter
     (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
   </div>
-</div>
+</div>-->
 
 <form enctype="multipart/form-data" action="" method="POST" role="form" name="myform" id="myform">
 
