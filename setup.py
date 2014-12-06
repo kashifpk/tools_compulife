@@ -31,8 +31,6 @@ for enabled_app in enabled_apps:
 if sys.version_info[:3] < (2, 5, 0):
     requires.append('pysqlite')
 
-print(requires)
-
 setup(
     name='tools_compulife',
     version='0.1',
