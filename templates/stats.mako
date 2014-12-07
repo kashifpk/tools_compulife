@@ -14,6 +14,8 @@ ${charting.line_chart(data=stats, div_name="daily_traffic_chart", width="100%", 
   </div>
 </div>
 
+<br />
+
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <table class="table table-striped table-condensed">
