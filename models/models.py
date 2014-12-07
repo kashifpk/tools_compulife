@@ -49,6 +49,7 @@ class Visit(Base):
                                  Visit.timestamp < date_to)
 
         query = query.group_by(cast(Visit.timestamp, Date))
+        query = query.order_by(cast(Visit.timestamp, Date))
 
         if limit:
             query = query.limit(limit)
