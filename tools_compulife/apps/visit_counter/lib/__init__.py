@@ -1,6 +1,14 @@
 from ..models import Visit, db
 from sqlalchemy import func
-from urlparse import urlparse
+
+import sys
+PY3 = sys.version > '3'
+
+if PY3:
+    from urllib.parse import urlparse
+else:
+    from urlparse import urlparse
+
 
 
 def count_visit(request, url=None):

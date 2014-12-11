@@ -1,7 +1,4 @@
 <%inherit file="/base.mako"/>
-<%!
-from urlparse import urlparse
-%>
 <%def name="title()">
 Code Highlighter
 </%def>
@@ -18,9 +15,7 @@ Code Highlighter
     language = dijit.byId('language').value;
     style = dijit.byId('style').value;
     
-    // ${request.current_route_url()}
-    // ${urlparse(request.current_route_url()).path}
-    url = "${urlparse(request.current_route_url()).path.rstrip('/')}" + "/" + language + "/" + style;
+    url = "${url_base}" + "/" + language + "/" + style;
     
     var myform = document.myform;
     myform.action = url;

@@ -9,6 +9,7 @@ requires = [
     'PyCK',
     'pyramid',
     'SQLAlchemy',
+    'psycopg2',
     'transaction',
     'pyramid_mako',
     'pyramid_tm',

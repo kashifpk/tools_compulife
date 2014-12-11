@@ -2,6 +2,14 @@ from pyramid.view import view_config
 from pyramid.response import Response
 from pyramid.httpexceptions import HTTPNotAcceptable,HTTPFound, HTTPBadRequest
 
+import sys
+PY3 = sys.version > '3'
+
+if PY3:
+    from urllib.parse import urlparse
+else:
+    from urlparse import urlparse
+
 from ..models import db
 from ..lib import get_names, highlight_code
 from .. import APP_NAME, PROJECT_NAME, APP_BASE, project_package
@@ -16,7 +24,10 @@ def highlighter_home(request):
 
     count_visit(request)
     lexers, styles = get_names()
-    return {'APP_BASE': APP_BASE, 'lexers': lexers, 'styles': styles}
+    url_base = urlparse(request.current_route_url()).path.rstrip('/')
+
+    return {'APP_BASE': APP_BASE, 'lexers': lexers, 'styles': styles,
+            'url_base': url_base}
 
 
 @view_config(route_name=APP_NAME+'.highlight',
