@@ -2,6 +2,10 @@
 <%namespace name="charting" file="charting.mako" />
 <%namespace name="date_search" file="_date_search.mako" />
 
+%if has_geoip:
+<%namespace name="geoip" file="${context.get('PROJECT_NAME')}.apps.geoip$templates/_geoip.mako" />
+%endif
+
 <%def name="title()">
 Visit records
 </%def>
@@ -33,7 +37,23 @@ ${charting.bar_chart(data=stats, div_name='bar_chart', width='100%', height=str(
     %for rec in records:
       <tr>
         <td>${rec.timestamp}</td>
-        <td>${rec.source_ip}</td>
+        <td>
+          ## r1.country.iso_code.lower()
+          %if has_geoip and geo_lookup[rec.source_ip]:
+            <span id="vr_${rec.id}">
+              ${geoip.get_flag(geo_lookup[rec.source_ip].country.iso_code.lower(), 24)}
+            </span>
+            <script type="application/x-javascript">
+            require(["dijit/Tooltip", "dojo/domReady!"], function(Tooltip){
+              new Tooltip({
+                  connectId: ["vr_${rec.id}"],
+                  label: '${geo_lookup[rec.source_ip].city.name}, ${geo_lookup[rec.source_ip].subdivisions.most_specific.name}, [${geo_lookup[rec.source_ip].country.iso_code}] ${geo_lookup[rec.source_ip].country.name}<br /><a href="${request.route_url('geoip.home')}?ip=${rec.source_ip}" target="_blank">more</a>'
+              });
+            });
+            </script>
+          %endif
+          ${rec.source_ip}
+        </td>
         <td>${rec.url}</td>
         <td>${rec.user_agent}</td>
       </tr>

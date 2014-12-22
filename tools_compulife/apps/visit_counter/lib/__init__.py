@@ -10,7 +10,6 @@ else:
     from urlparse import urlparse
 
 
-
 def count_visit(request, url=None):
     "Inserts a record in visits model for current URL (excluding querystring)"
 
