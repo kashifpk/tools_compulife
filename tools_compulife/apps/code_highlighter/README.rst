@@ -14,7 +14,7 @@ Later if you want to pull latest changes (any updates to the app) you can do::
     git subtree pull --prefix myproject/apps/code_highlighter CH master
 
 
-Dependencies
--------------
+Demo
+----
 
-* pygments
+A working demo of the latest code can be fount at: `tools.compulife.com.pk <http://tools.compulife.com.pk/code_highlighter>`_
