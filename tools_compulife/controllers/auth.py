@@ -145,12 +145,6 @@ def auth_routes(request):
     for k,v in routes.items():
         routes[k] = '{} ({})'.format(k,v)
     
-    #for r in request.registry.introspector.get_category('routes'):
-    #    route = r['introspectable']
-    #    #print(R['name'] + ':' + R['pattern'])
-    #    routes.append((route['name'], route['name'] + '(' + route['pattern'] + ')'))
-
-    #f.route_name.choices = routes
 
     permissions = []
     Ps = db.query(Permission).order_by('permission')
@@ -164,7 +158,7 @@ def auth_routes(request):
         if f.validate():
             if 'add' == action:
                 routenames = []
-                log.info(request.POST['routenames'])
+                
                 for k,v in request.POST.items():
                     if 'routenames' == k:
                         routenames.append(v)

@@ -20,7 +20,7 @@ from pyck.mako_utils.multi_selector import multi_selector
         
         <div class="col-sm-9">
             ## Ignore static routes (route name starts with __)
-            ${multi_selector(routes, '__')|n}  
+            ${multi_selector(items=routes, field_name='routenames', ignore_prefix='__')|n}  
         </div>
     </div>
     
