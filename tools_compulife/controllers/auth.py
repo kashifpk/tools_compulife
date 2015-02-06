@@ -2,6 +2,8 @@ import hashlib
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
+from pyck.lib import get_routes
+
 from ..models import db, Permission, User, UserPermission, RoutePermission
 
 from ..forms import LoginForm, UserForm, PermissionForm, RoutePermissionForm
@@ -139,11 +141,14 @@ def auth_routes(request):
     # **** Code for setting up route permission form
     f = RoutePermissionForm(request.POST)
 
-    routes = []
-    for r in request.registry.introspector.get_category('routes'):
-        route = r['introspectable']
-        #print(R['name'] + ':' + R['pattern'])
-        routes.append((route['name'], route['name'] + '(' + route['pattern'] + ')'))
+    routes = get_routes(request)
+    for k,v in routes.items():
+        routes[k] = '{} ({})'.format(k,v)
+    
+    #for r in request.registry.introspector.get_category('routes'):
+    #    route = r['introspectable']
+    #    #print(R['name'] + ':' + R['pattern'])
+    #    routes.append((route['name'], route['name'] + '(' + route['pattern'] + ')'))
 
     #f.route_name.choices = routes
 

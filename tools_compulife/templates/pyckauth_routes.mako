@@ -1,3 +1,7 @@
+<%!
+from pyck.mako_utils.multi_selector import multi_selector
+%>
+
 <%inherit file="pyckauth_base.mako"/>
 <style>
     li {display: inline;}
@@ -15,17 +19,8 @@
         <div class="col-sm-3">Routes</div>
         
         <div class="col-sm-9">
-          <table class="table table-condensed table-hover table-stripped">
-            %for route in routes:
-                <tr>
-                    <td>
-                        <input type="checkbox" data-dojo-type="dijit/form/CheckBox" name="routenames" value="${route[0]}" />
-                        ${route[1]}
-                    </td>
-                
-                </tr>
-            %endfor
-          </table>
+            ## Ignore static routes (route name starts with __)
+            ${multi_selector(routes, '__')|n}  
         </div>
     </div>
     
