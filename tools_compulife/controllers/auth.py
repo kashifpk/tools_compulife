@@ -7,6 +7,9 @@ from ..models import db, Permission, User, UserPermission, RoutePermission
 from ..forms import LoginForm, UserForm, PermissionForm, RoutePermissionForm
 from sqlalchemy import func
 
+import logging
+log = logging.getLogger(__name__)
+
 
 @view_config(route_name='pyckauth_manager', renderer='pyckauth_manager.mako')
 def auth_manager(request):
@@ -142,7 +145,7 @@ def auth_routes(request):
         #print(R['name'] + ':' + R['pattern'])
         routes.append((route['name'], route['name'] + '(' + route['pattern'] + ')'))
 
-    f.route_name.choices = routes
+    #f.route_name.choices = routes
 
     permissions = []
     Ps = db.query(Permission).order_by('permission')
@@ -155,18 +158,30 @@ def auth_routes(request):
     if 'POST' == request.method:
         if f.validate():
             if 'add' == action:
-                for P in f.permissions.data:
-                    for M in f.request_methods.data:
-                        RP = RoutePermission(route_name=f.route_name.data, method=M, permission=P)
-                        db.add(RP)
+                routenames = []
+                log.info(request.POST['routenames'])
+                for k,v in request.POST.items():
+                    if 'routenames' == k:
+                        routenames.append(v)
+                
+                for routename in routenames:
+                    for P in f.permissions.data:
+                        for M in f.request_methods.data:
+                            RP = RoutePermission(route_name=routename, method=M, permission=P)
+                            db.add(RP)
 
                 request.session.flash("Route permissions created!")
                 return HTTPFound(location=request.route_url('pyckauth_routes'))
 
-    route_permissions = db.query(RoutePermission).order_by(RoutePermission.route_name,
-                                                                  RoutePermission.permission, RoutePermission.method)
+    route_permissions = db.query(RoutePermission).order_by(
+        RoutePermission.route_name,
+        RoutePermission.permission,
+        RoutePermission.method)
 
-    return dict(action=action, route_permissions=route_permissions, route_permissions_form=f)
+    return dict(action=action,
+                route_permissions=route_permissions,
+                routes=routes,
+                route_permissions_form=f)
 
 
 @view_config(route_name='pyckauth_login', renderer='pyckauth_login.mako')

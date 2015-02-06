@@ -10,6 +10,26 @@
 <form action="${request.current_route_url()}" method="post" role="form" class="form-horizontal">
 
 
+    
+    <div class="form-group">
+        <div class="col-sm-3">Routes</div>
+        
+        <div class="col-sm-9">
+          <table class="table table-condensed table-hover table-stripped">
+            %for route in routes:
+                <tr>
+                    <td>
+                        <input type="checkbox" data-dojo-type="dijit/form/CheckBox" name="routenames" value="${route[0]}" />
+                        ${route[1]}
+                    </td>
+                
+                </tr>
+            %endfor
+          </table>
+        </div>
+    </div>
+    
+    
     ${route_permissions_form.as_div() | n}
     
     <div class="form-group">
