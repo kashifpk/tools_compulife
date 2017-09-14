@@ -19,7 +19,8 @@ Later if you want to pull latest changes (any updates to the app) you can do::
 Setup Instructions
 -------------------
 
-This app requires the geoip2 library from maxmind so after including this app you'll need to run::
+This app requires the geoip2 library from maxmind so after including this app you'll need to install
+libmaxminddb0 and libmaxmainddb-dev (on ubuntu) and run::
 
     python setup.py develop
 
